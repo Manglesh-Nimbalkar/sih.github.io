@@ -1,0 +1,187 @@
+.text {
+  top: 0;
+  left: 0;
+  border-radius: 30px;
+  background: linear-gradient(180deg, #21201d, #eeebde 0.01%, #eeebde);
+  width: 665px;
+}
+.main,
+.map-icon,
+.text {
+  position: absolute;
+  height: 796px;
+}
+.map-icon {
+  top: calc(50% - 398px);
+  left: calc(50% - 53.5px);
+  border-radius: 27px;
+  width: 772px;
+  object-fit: cover;
+}
+.main {
+  top: 228px;
+  left: 0;
+  width: 1437px;
+}
+.contact-91,
+.helpline-xyzgmailcom {
+  position: relative;
+  display: inline-block;
+  width: 285px;
+  height: 31px;
+  flex-shrink: 0;
+}
+.helpline-xyzgmailcom {
+  width: 307px;
+}
+.other {
+  position: absolute;
+  top: 993px;
+  left: 41px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 46px;
+}
+.booking-details {
+  margin: 0;
+  position: relative;
+  font-size: inherit;
+  font-weight: 400;
+  font-family: inherit;
+  display: inline-block;
+  width: 646px;
+  height: 63px;
+  flex-shrink: 0;
+  z-index: 0;
+}
+.location-pay {
+  margin: 0;
+}
+.location-pay-container {
+  position: relative;
+  font-size: 33px;
+  font-family: var(--font-molengo);
+  display: inline-block;
+  width: 644px;
+  height: 158px;
+  flex-shrink: 0;
+  z-index: 1;
+}
+.frame-child {
+  position: absolute;
+  margin: 0 !important;
+  top: 78px;
+  left: -16px;
+  background-color: #d57474;
+  width: 625px;
+  height: 9px;
+  z-index: 2;
+}
+.booking-details-parent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 39px;
+}
+.booking {
+  position: absolute;
+  top: 281px;
+  left: 44px;
+  width: 646px;
+  height: 63px;
+  font-size: 52px;
+  font-family: var(--font-lato);
+}
+.desktop-1-child {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 29px;
+  background-color: rgba(81, 202, 93, 0.82);
+  width: 1440px;
+  height: 228px;
+}
+.zondiconscheckmark-outline {
+  position: absolute;
+  top: 57px;
+  left: 44px;
+  width: 114px;
+  height: 114px;
+  overflow: hidden;
+}
+.vector-icon {
+  position: relative;
+  width: 114px;
+  height: 114px;
+}
+.transaction-successful {
+  position: relative;
+  letter-spacing: 0.05em;
+  display: inline-block;
+  width: 1244px;
+  height: 102px;
+  flex-shrink: 0;
+  text-shadow: 0 4px 25px rgba(0, 0, 0, 0.26);
+}
+.vector-parent {
+  position: absolute;
+  top: 56px;
+  left: 43.3px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1px;
+  text-align: center;
+  font-size: 75.12px;
+  font-family: var(--font-biryani);
+}
+.download-receipt1 {
+  position: relative;
+  font-size: var(--font-size-3xl);
+  font-family: var(--font-inter);
+  color: var(--color-black);
+  text-align: center;
+}
+.download-receipt {
+  cursor: pointer;
+  border: 0;
+  padding: var(--padding-xl) var(--padding-21xl);
+  background-color: var(--button);
+  border-radius: var(--br-31xl);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.download-receipt-parent,
+.main-menu {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.download-receipt-parent {
+  position: absolute;
+  top: 868px;
+  left: 41px;
+  gap: 118px;
+}
+.desktop-1 {
+  position: relative;
+  background-color: #fff;
+  width: 100%;
+  height: 1024px;
+  overflow: hidden;
+  text-align: left;
+  font-size: var(--font-size-4xl);
+  color: var(--color-black);
+  font-family: var(--font-molengo);
+}

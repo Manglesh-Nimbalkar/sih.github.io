@@ -1,0 +1,99 @@
+.pay-park {
+  position: absolute;
+  top: calc(50% - 387.9px);
+  left: calc(50% + 60.65px);
+  font-size: 67.62px;
+  text-shadow: 0 8.5px 8.45px rgba(0, 0, 0, 0.25);
+}
+.fare-per-hour {
+  margin: 0;
+}
+.fare-per-hour-container {
+  position: absolute;
+  top: calc(50% - 75.9px);
+  left: calc(50% - 210.65px);
+  font-size: 46.49px;
+  line-height: 63.4px;
+  font-family: var(--font-inria-sans);
+  color: #12e3f0;
+  display: inline-block;
+  width: 743.9px;
+}
+.group-child {
+  position: absolute;
+  top: calc(50% - 216px);
+  left: calc(50% + 150.95px);
+  width: 257.9px;
+  height: 58.7px;
+}
+.location-kondhwa-budruk,
+.ratings-41 {
+  position: absolute;
+  top: calc(50% - 282.2px);
+  left: calc(50% - 533.15px);
+  font-weight: 500;
+  color: #fff;
+  display: inline-block;
+  width: 965.8px;
+  height: 147.9px;
+}
+.ratings-41 {
+  top: calc(50% - 208.3px);
+  left: calc(50% - 91.45px);
+  color: #fad306;
+  width: 268.4px;
+  height: 48.6px;
+}
+.book-now {
+  position: relative;
+  line-height: 63.4px;
+  mix-blend-mode: normal;
+}
+.book-now-wrapper {
+  position: absolute;
+  top: 649px;
+  left: calc(50% - 471.65px);
+  border-radius: 211.33px;
+  background-color: #517ab7;
+  box-shadow: 0 8.5px 6.34px rgba(0, 0, 0, 0.25);
+  width: 418.4px;
+  height: 126.8px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 31.698755264282227px 63.39751052856445px;
+  box-sizing: border-box;
+  mix-blend-mode: normal;
+  text-align: center;
+  font-size: 63.4px;
+  color: rgba(0, 0, 0, 0.83);
+  font-family: var(--font-baloo);
+}
+.pay-park-parent {
+  position: absolute;
+  top: calc(50% - 413px);
+  left: calc(50% - 270.5px);
+  width: 1066.3px;
+  height: 775.8px;
+}
+.unsplash1dvanejfsz0-icon {
+  position: absolute;
+  top: 299px;
+  left: 37px;
+  border-radius: 73px;
+  width: 553px;
+  height: 321px;
+  object-fit: cover;
+}
+.group-parent {
+  position: relative;
+  background: radial-gradient(50% 50%at 50% 50%, #000, rgba(224, 213, 213, 0));
+  width: 100%;
+  height: 1024px;
+  overflow: hidden;
+  text-align: left;
+  font-size: 42.27px;
+  color: rgba(219, 20, 20, 0.9);
+  font-family: var(--font-inter);
+}

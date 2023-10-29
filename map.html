@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Current Location Map</title>
+    <link rel="stylesheet" href="https://openlayers.org/en/v4.6.5/css/ol.css" type="text/css">
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            background-image: url('BG.jpeg'); /* Set the background image */
+            background-size: cover; /* Cover the entire viewport */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #fff;
+        }
+
+        #map {
+            width: 80%;
+            max-width: 800px;
+            height: 500px;
+            max-height: 80vh;
+        }
+
+        #coordinates, #address {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            text-align: center;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 5px;
+            border-radius: 5px;
+            color: #000;
+        }
+
+        #coordinates {
+            bottom: 40px;
+        }
+
+        #button-container {
+            width: 25%;
+            max-width: 250px;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        #action-button {
+            width: 100%;
+            padding-top: 12%;
+            padding-bottom: 12%;
+            background-color: #fff;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            box-shadow: 0 0 28px 0 rgba(164, 164, 164, 0.636);
+        }
+
+        #action-button-text {
+            font-weight: bold;
+            font-size: 150%;
+        }
+
+        
+
+        #button-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #button-content img {
+            max-width: 100px;
+            margin-bottom: -20px;
+            margin-left: 120px;
+        }
+
+        #action-button-text {
+            font-weight: bold;
+            font-size: 150%;
+            margin-top: -30px; /* Adjusted to move the text upwards */
+        }
+
+        #action-button-text-2 {
+            font-size: 120%;
+            margin-bottom: -20px; 
+            margin-left: -120px;
+        }
+
+        #action-button-text-3 {
+            font-size: 120%;
+            margin-top: 30px; 
+            margin-left: -110px;
+        }
+
+
+        #title {
+            font-size: 24px;
+            margin: 20px 0;
+            color: #fff;
+        }
+
+        .car-parking-label {
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 5px;
+            border-radius: 5px;
+            color: #000;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="title">
+        <h1>Current Location</h1>
+    </div>
+    <div id="map"></div>
+    <div id="coordinates"></div>
+    <div id="address"></div>
+    <div id="button-container">
+        <button id="action-button" onclick="window.location.href='book.html';">
+            <span id="action-button-text">Pay & Park</span>
+            <span id="action-button-text-2">Available: 256</span>
+            <span id="action-button-text-3">Click to Book Now.</span>
+            <div id="button-content">
+                <img src="park.jfif" alt="Park Image">
+            </div>
+        </button>
+    </div>
+    <script src="https://openlayers.org/en/v4.6.5/build/ol.js"></script>
+    <script>
+        var map = new ol.Map({
+    target: 'map',
+    layers: [
+        new ol.layer.Tile({
+            source: new ol.source.OSM()
+        })
+    ],
+    view: new ol.View({
+        center: ol.proj.fromLonLat([0, 0]),
+        zoom: 12
+    })
+});
+
+var vectorSource = new ol.source.Vector();
+var vectorLayer = new ol.layer.Vector({
+    source: vectorSource
+});
+map.addLayer(vectorLayer);
+
+function updateLocation(position) {
+    var userLocation = ol.proj.fromLonLat([position.coords.longitude, position.coords.latitude]);
+
+    var userLocationStyle = new ol.style.Style({
+        image: new ol.style.Circle({
+            radius: 5,
+            fill: new ol.style.Fill({
+                color: 'blue'
+            })
+        })
+    });
+
+    var redDotStyle = new ol.style.Style({
+        image: new ol.style.Circle({
+            radius: 5,
+            fill: new ol.style.Fill({
+                color: 'red'
+            })
+        })
+    });
+
+    var carParkingLabelStyle = new ol.style.Style({
+        text: new ol.style.Text({
+            text: 'Pay & Park',
+            offsetY: -15,
+            fill: new ol.style.Fill({
+                color: 'Red'
+            })
+        })
+    });
+
+    var secureParkLabelStyle = new ol.style.Style({
+        text: new ol.style.Text({
+            text: 'Secure Park',
+            offsetY: -15,
+            fill: new ol.style.Fill({
+                color: 'Red'
+            })
+        })
+    });
+
+    var blueRingStyle = new ol.style.Style({
+        stroke: new ol.style.Stroke({
+            color: 'blue',
+            width: 2
+        }),
+        fill: new ol.style.Fill({
+            color: 'rgba(0, 0, 255, 0.1)'
+        })
+    });
+
+    vectorSource.clear();
+
+    vectorSource.addFeature(new ol.Feature({
+        geometry: new ol.geom.Point(userLocation)
+    }));
+    vectorSource.getFeatures()[0].setStyle(userLocationStyle);
+
+    var redDotLocation = ol.proj.fromLonLat([73.87, 18.47]);
+    vectorSource.addFeature(new ol.Feature({
+        geometry: new ol.geom.Point(redDotLocation)
+    }));
+    vectorSource.getFeatures()[1].setStyle(redDotStyle);
+
+    // Add the second red dot for "Secure Park" at the given coordinates
+    var secureParkLocation = ol.proj.fromLonLat([73.89, 18.45]);
+    vectorSource.addFeature(new ol.Feature({
+        geometry: new ol.geom.Point(secureParkLocation)
+    }));
+    vectorSource.getFeatures()[2].setStyle(redDotStyle); // Use the same style as the first red dot
+
+    // Add labels for the parking locations
+    vectorSource.addFeature(new ol.Feature({
+        geometry: new ol.geom.Point(redDotLocation)
+    }));
+    vectorSource.getFeatures()[3].setStyle(carParkingLabelStyle);
+
+    vectorSource.addFeature(new ol.Feature({
+        geometry: new ol.geom.Point(secureParkLocation)
+    }));
+    vectorSource.getFeatures()[4].setStyle(secureParkLabelStyle);
+
+    vectorSource.addFeature(new ol.Feature({
+        geometry: new ol.geom.Circle(userLocation, 3000)
+    }));
+    vectorSource.getFeatures()[5].setStyle(blueRingStyle);
+
+    map.getView().setCenter(userLocation);
+
+    var coordinatesElement = document.getElementById("coordinates");
+    coordinatesElement.textContent = "Coordinates: " + position.coords.latitude + ", " + position.coords.longitude;
+
+    fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${position.coords.latitude}&lon=${position.coords.longitude}`)
+        .then(response => response.json())
+        .then(data => {
+            var addressElement = document.getElementById("address");
+            if (data.display_name) {
+                addressElement.textContent = "Current Address: " + data.display_name;
+            } else {
+                addressElement.textContent = "Address not found.";
+            }
+        })
+        .catch(error => {
+            console.error("Error fetching address:", error);
+            document.getElementById("address").textContent = "Address not found.";
+        });
+}
+
+function initMap() {
+    if ('geolocation' in navigator) {
+        navigator.geolocation.watchPosition(updateLocation, function () {
+            alert('Unable to retrieve your location.');
+        });
+    } else {
+        alert('Geolocation is not supported by your browser.');
+    }
+}
+
+window.onload = initMap;
+
+    </script>
+</body>
+</html>

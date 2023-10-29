@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fare Payment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(45deg, #3498db, #9b59b6);
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header {
+            margin-top: 20px;
+            color: #fff;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            background-color: #3498db;
+            padding: 10px 0;
+        }
+
+        .tab {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            margin: 0 10px;
+        }
+
+        .tab:first-child {
+            background: none;
+            cursor: pointer;
+        }
+
+        .content {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #000;
+            font-size: 36px;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        tr:nth-child(2) td {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .big-text {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* Back button styles */
+        #back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #333;
+            color: #fff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        #back-button:hover {
+            background-color: #555;
+        }
+
+        /* Proceed button styles */
+        #proceed-button {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 20px 40px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        #proceed-button:hover {
+            background-color: #c0392b;
+        }
+
+        /* Pay text styles */
+        #pay-text {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 20px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a id="back-button" href="index.html">Back</a>
+            <h1>Fare Payment</h1>
+        </div>
+        <div class="tabs">
+            <a class="tab" href="home-page.html">Home</a>
+        </div>
+        <div class="content">
+            <h2>Booking Details</h2>
+            <table>
+                <tbody>
+                    <tr>
+                        <td class="big-text">Parking Name:</td>
+                        <td class="big-text"><b>Pay & Park, Pune</b></td>
+                    </tr>
+                    <tr>
+                        <td>Details</td>
+                        <td>Value</td>
+                    </tr>
+                    <tr>
+                        <td>Fare per Hour (in rupees):</td>
+                        <td>₹37.62</td>
+                    </tr>
+                    <tr>
+                        <td>Booking Duration (hours):</td>
+                        <td id="booking-duration">0</td>
+                    </tr>
+                    <!-- New row for evaluated amount -->
+                    <tr>
+                        <td>Fare (in rupees):</td>
+                        <td>₹<span id="fare-amount">0</span></td>
+                    </tr>
+                    <tr>
+                        <td>GST (18%):</td>
+                        <td>₹<span id="gst-amount">0</span></td>
+                    </tr>
+                    <tr>
+                        <td>Convenience Fee:</td>
+                        <td>₹<span id="convenience-fee">10</span></td>
+                    </tr>
+                    <tr>
+                        <td>Service Fee:</td>
+                        <td>₹<span id="service-fee">5</span></td>
+                    </tr>
+                    <tr>
+                        <td>Total Amount:</td>
+                        <td>₹<span id="total-amount">0</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Pay text -->
+    <p id="pay-text">Pay ₹0.00</p>
+    <!-- Proceed button (link to the next webpage) -->
+    <a id="proceed-button" href="./message.html">Proceed</a>
+
+    <script>
+        // Calculate and update the total amount when the page loads
+        document.addEventListener('DOMContentLoaded', function () {
+            const farePerHour = 37.62; // Fare in rupees per hour
+    
+            // Get the selected booking duration from the previous page
+            const urlParams = new URLSearchParams(window.location.search);
+            const selectedHours = parseInt(urlParams.get('bookingDuration'));
+    
+            // Update the booking duration in the table
+            document.getElementById('booking-duration').textContent = selectedHours;
+    
+            const gstPercentage = 18; // 18% GST
+    
+            // Calculate the total amounts based on the selected hours
+            const totalFare = farePerHour * selectedHours;
+            const gstAmount = (gstPercentage / 100) * totalFare;
+            const evaluatedAmount = totalFare; // Evaluated amount
+            const totalAmount = totalFare + gstAmount + 10 + 5; // Assuming convenience fee and service fee are fixed values
+    
+            // Display the calculated amounts
+            document.getElementById('fare-amount').textContent = totalFare.toFixed(2);
+            document.getElementById('gst-amount').textContent = gstAmount.toFixed(2);
+            document.getElementById('total-amount').textContent = totalAmount.toFixed(2);
+            document.getElementById('pay-text').textContent = `Pay ₹${totalAmount.toFixed(2)}`;
+            
+        });
+    </script>
+    <style>
+        /* CSS rule to change the text color to black */
+        #pay-text {
+            color: black;
+        }
+    </style>
+</body>
+</html>

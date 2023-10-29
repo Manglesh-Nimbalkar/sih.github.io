@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Page</title>
+    <style>
+        body {
+            text-align: center; /* Center the content horizontally */
+            background-color: #000; /* Dark background color */
+            color: #fff; /* Text color */
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin: 20px 0;
+        }
+
+        #container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #333; /* Dark background color for the container */
+            padding: 20px;
+            border-radius: 10px; /* Rounded corners */
+        }
+
+        #image-container {
+            display: flex;
+            flex-direction: column; /* Display images vertically */
+            align-items: center;
+            padding: 10px;
+        }
+
+        #logo-image {
+            width: 400px; /* Increase the width of the "logo.png" image */
+            height: auto;
+        }
+
+        img {
+            width: 300px; /* Keep the original size of the "parking_on_maps.jpeg" image */
+            height: auto;
+        }
+
+        #parking-image {
+            border: 2px solid #fff; /* Add a border to the "parking_on_maps.jpeg" image */
+        }
+
+        #searchButton {
+            background-color: #007BFF; /* Button background color */
+            color: #fff; /* Text color */
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px; /* Rounded corners */
+            margin-top: 20px; /* Add some spacing below the images */
+        }
+
+        #searchButton:hover {
+            background-color: #0056b3; /* Button background color on hover */
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <!-- Display the resized "logo.png" image without affecting the layout -->
+        <img id="logo-image" src="logo.png" alt="Logo">
+        
+        <!-- Display the "parking_on_maps.jpeg" image with a border -->
+        <div id="image-container">
+            <img id="parking-image" src="parking_on_maps.jpeg" alt="Parking on Map">
+        </div>
+
+        <!-- Add a button below the images -->
+        <button id="searchButton">Search Nearby Parkings</button>
+    </div>
+
+    <script>
+        document.getElementById("searchButton").addEventListener("click", function() {
+            // Redirect to the map page when the button is clicked
+            window.location.href = "map.html";
+        });
+    </script>
+</body>
+</html>
