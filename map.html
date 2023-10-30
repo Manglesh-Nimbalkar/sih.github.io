@@ -42,65 +42,61 @@
         }
 
         #button-container {
-            width: 25%;
-            max-width: 250px;
-            text-align: center;
-            margin: 10px 0;
+            display: flex;
+            justify-content: space-between; /* Distribute space between buttons */
+            width: 50%; /* Adjust the width as needed */
+            max-width: 400px;
+            text-align: left;
+            margin: 20px 0;
+            flex-direction: row; /* Place buttons side by side */
         }
 
-        #action-button {
-            width: 100%;
-            padding-top: 12%;
-            padding-bottom: 12%;
+        .action-button {
+            width: 60%; /* Adjust the width to control the size of each button */
+            height: 160px;
             background-color: #fff;
             color: #000;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
             box-shadow: 0 0 28px 0 rgba(164, 164, 164, 0.636);
+            margin-right: 20px;
         }
 
-        #action-button-text {
+        .action-button-text {
             font-weight: bold;
             font-size: 150%;
         }
 
-        
-
-        #button-content {
+        .button-content {
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        #button-content img {
+        .button-content img {
             max-width: 100px;
             margin-bottom: -20px;
-            margin-left: 120px;
+            margin-left: 120px; /* Adjusted margin for better alignment */
         }
 
-        #action-button-text {
+        .action-button-text {
             font-weight: bold;
             font-size: 150%;
             margin-top: -30px; /* Adjusted to move the text upwards */
         }
 
-        #action-button-text-2 {
+        .action-button-text-2 {
             font-size: 120%;
-            margin-bottom: -20px; 
-            margin-left: -120px;
+            margin-bottom: -20px;
+            margin-left: 0px; /* Adjusted margin for better alignment */
         }
 
-        #action-button-text-3 {
+        .action-button-text-3 {
             font-size: 120%;
-            margin-top: 30px; 
-            margin-left: -110px;
+            margin-top: 30px;
+            margin-left: -20px; /* Adjusted margin for better alignment */
         }
-
 
         #title {
             font-size: 24px;
@@ -125,15 +121,24 @@
     <div id="coordinates"></div>
     <div id="address"></div>
     <div id="button-container">
-        <button id="action-button" onclick="window.location.href='book.html';">
-            <span id="action-button-text">Pay & Park</span>
-            <span id="action-button-text-2">Available: 256</span>
-            <span id="action-button-text-3">Click to Book Now.</span>
-            <div id="button-content">
+        <button class="action-button" onclick="window.location.href='index.html';">
+            <span class="action-button-text">Pay & Park: </span>
+            <span class="action-button-text-2">Available: 256</span>
+            <span class="action-button-text-3">Click to Book Now.</span>
+            <div class="button-content">
                 <img src="park.jfif" alt="Park Image">
             </div>
         </button>
+        <button class="action-button" onclick="window.location.href='new-page.html';">
+            <span class="action-button-text">Secure Park: </span>
+            <span class="action-button-text-2">Available: 84</span>
+            <span class="action-button-text-3">Click to Book Now.</span>
+            <div class="button-content">
+                <img src="park.jfif" alt="New Image">
+            </div>
+        </button>
     </div>
+
     <script src="https://openlayers.org/en/v4.6.5/build/ol.js"></script>
     <script>
         var map = new ol.Map({
@@ -148,6 +153,7 @@
         zoom: 12
     })
 });
+
 
 var vectorSource = new ol.source.Vector();
 var vectorLayer = new ol.layer.Vector({
@@ -178,7 +184,7 @@ function updateLocation(position) {
 
     var carParkingLabelStyle = new ol.style.Style({
         text: new ol.style.Text({
-            text: 'Pay & Park',
+            text: 'Pay & Park: ',
             offsetY: -15,
             fill: new ol.style.Fill({
                 color: 'Red'
@@ -188,7 +194,7 @@ function updateLocation(position) {
 
     var secureParkLabelStyle = new ol.style.Style({
         text: new ol.style.Text({
-            text: 'Secure Park',
+            text: 'Secure Park: ',
             offsetY: -15,
             fill: new ol.style.Fill({
                 color: 'Red'
